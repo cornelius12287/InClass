@@ -1,2 +1,4 @@
 # InClass
-Following work done in class lectures
+
+Hello. My name is Cory Bowers. My first undergraduate degree was from Rensselaer Polytechnic Institute in Graphic Design and Communications. Following that I attended SUNY New Paltz for a Bachelor’s degree in Anthropology. Years later, I started pursuing this Master’s degree in Computer Science. During my first semester in this program, I took a course in Java programming, and a course in computer architecture/assembly language programming. In those two course, I wrote a variety of programs, including a probability-based airport simulation, a palindrome tester, and a chi-squared letter distribution analyzer.
+My reasoning for pursuing this degree is to develop my skills in a field that is becoming more and more ubiquitous in the modern job market. In particular, this course will be help me further an interest that I have long had in learning more about web design and app development, as well as the structure behind them, and what it takes to maintain them and track usage.
