@@ -1,0 +1,20 @@
+{
+  "name": "inclass",
+  "version": "1.0.0",
+  "description": "InClass",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: n otest specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cornelius12287/InClass.git"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
