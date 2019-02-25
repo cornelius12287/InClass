@@ -7,4 +7,4 @@ const port = 3000;
 app.get('/', (req, res) => res.send('Hello World!'));
 app.use("/users", users);
 
-app.listen(port, () => console.log('Example app http://localhost:$(port)'));
+app.listen(port, () => console.log(`Example app http://localhost:${port}`));
