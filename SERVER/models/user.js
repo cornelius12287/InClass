@@ -1,23 +1,42 @@
 // imports mysql connection
-const conn = require('./mysql_connection')
+// 'require' is part of common-js node-module-system
+const conn = require('./mysql_connection');
 
 // model JSON object
-// each method takes a cb callback parameter for asynchronous programming
+// each method takes a cb callback function parameter for asynchronous programming
 const model = {
     getAll(cb){
         conn.query("SELECT * FROM Spring2019_Persons", (err, data) => {
             cb(err, data);
         })
     },
-    get(id, cb){
 
+    get(id, cb){
+        conn.query("SELECT * FROM Spring2019_Persons WHERE Id=?", id, (err, data) => {
+            cb(err, data[0]);
+        });
     },
+
     add(input, cb){
-        conn.query("INSERT INTO Spring2019_Persons (FirstName,LastName,Password,created_at) VALUES (?)",
+        if(!input.Password){
+            cb(Error('Password Required'));
+            return;
+        }
+        if(input.Password < 8){
+            cb(Error('A Longer Password is Required'));
+            return;
+        }
+        conn.query("INSERT INTO Spring2019_Persons (FirstName,LastName,Birthday,Password,created_at) VALUES (?)",
                     [[input.FirstName, input.LastName, input.Birthday, input.Password, new Date()]],
                     (err, data) => {
-                        cb(err, data);
-                    })
+                        if(err){
+                            cb(err);
+                            return;
+                        }
+                        model.get(data.insertId, (err, data) => {
+                            cb(err, data);
+                        })
+                    });
     }
 };
 
