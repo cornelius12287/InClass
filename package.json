@@ -11,7 +11,6 @@
     "test": "echo \"Error: n otest specified\" && exit 1",
     "start": "nodemon server/index.js --watch server"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cornelius12287/InClass.git"
