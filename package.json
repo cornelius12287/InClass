@@ -1,6 +1,6 @@
 {
   "name": "InClass",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "InClass",
   "main": "index.js",
@@ -8,7 +8,6 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "echo \"Error: n otest specified\" && exit 1",
     "start": "nodemon server/index.js --watch server"
   },
   "repository": {
@@ -21,7 +20,8 @@
     "vue-router": "^3.0.1",
     "express": "^4.16.4",
     "mysql": "^2.16.0",
-    "dotenv": "^6.2.0"
+    "dotenv": "^6.2.0",
+    "bootstrap": "^4.3.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.10",
