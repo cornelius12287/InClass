@@ -1,7 +1,7 @@
 // imports mysql connection
 // 'require' is part of common-js node-module-system
 const conn = require('./mysql_connection');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const SALT_ROUNDS = 8;
 
 // model JSON object

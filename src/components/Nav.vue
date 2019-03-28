@@ -28,21 +28,24 @@
             <a href="#" class="nav-link" @click.prevent="login">LOGIN</a>
             <a href="#" class="nav-link">SIGN UP</a>
         </form>
-        <span class="navbar-text" v-if="user">Welcome {{user.name}}</span>
+        <span class="navbar-text" v-if="Globals.user">Welcome {{Globals.user.name}}</span>
         </div>
     </nav>
 </template>
 
 <script>
+import {login, Globals} from "@/models/api";
+
 export default {
     // data takes a function that returns data
     data:()=>({
-        user: null
+        Globals: Globals
     }),
     // methods takes an object that contain functins
     methods: {
         login(){
-            this.user = { name: "UserName"};
+            //calls Global login function instead
+            login()
         }
     }
 
