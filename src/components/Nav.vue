@@ -1,5 +1,4 @@
 <template>
-    
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <router-link class="navbar-brand" to="/">
             <img alt="Vue logo" height='50px' src="../assets/logo.png">
@@ -25,7 +24,6 @@
                     <a class="nav-link disabled" href="#">Disabled</a>
                 </li>
             </ul>
-
         <form class="form-inline mt-2 mt-md-0" v-if="!user">
             <a href="#" class="nav-link" @click.prevent="login">LOGIN</a>
             <a href="#" class="nav-link">SIGN UP</a>
@@ -33,7 +31,6 @@
         <span class="navbar-text" v-if="user">Welcome {{user.name}}</span>
         </div>
     </nav>
-
 </template>
 
 <script>

@@ -1,8 +1,10 @@
 // one model file for each table in database
 
-const mysql = require("mysql");
+const mysql =   require("mysql");
 //loads dotenv into environment variables
-require("dotenv").load();
+                require("dotenv").load();  
+
+const util = require('util');
 
 //const conn = mysql.createConnection(); expensive option
 //always passes one parameter, which is an object containing multiple "parameters"/configuration
@@ -14,7 +16,9 @@ const conn = mysql.createPool({
     password: process.env.MYSQL_PASS,
     database: process.env.MYSQL_DB,
     connectionLimit: 10,
-    //insecureAuth: true
+    insecureAuth: true
 });
+
+conn.query = util.promisify(conn.query);
 
 module.exports = conn;
