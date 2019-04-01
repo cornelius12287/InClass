@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import MyFriends from './views/MyFriends.vue';
 import MyGoals from './views/MyGoals.vue';
+import Register from './views/Register.vue';
 
 Vue.use(Router);
 
@@ -34,5 +35,10 @@ export default new Router({
     name: 'mygoals',
     component: MyGoals,
     },
+    {
+      path: '/Register',
+      name: 'register',
+      component: Register,
+      },
   ],
 });
