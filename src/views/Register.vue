@@ -55,7 +55,7 @@ export default {
     }),
     methods: {
         submit(){
-            
+            Register(this.data)
         }
     }
 
