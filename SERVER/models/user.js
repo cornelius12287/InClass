@@ -12,13 +12,16 @@ const model = {
     },
 
     async get(id){
-        return await conn.query("SELECT * FROM Spring2019_Persons WHERE Id=?", id);
+        const data = await conn.query("SELECT * FROM Spring2019_Persons WHERE Id=?", id);
+        if(!data){
+            throw Error('User not found');
+        }
+        return data[0];
     },
 
     async add(input){
         if(!input.Password){
-            cb(Error('Password Required'));
-            return;
+            throw Error('Password Required');
         }
         if(input.Password.length < 8){
             throw Error('A Longer Password is Required');

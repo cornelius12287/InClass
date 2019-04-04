@@ -16,7 +16,7 @@
       <div class="card-body">
         <h4 class="card-title">Register</h4>
         <p class="card-text">
-            <form @submit.prevent="Submit">
+            <form @submit.prevent="submit">
                 <div class="form-group">
                   <label for="FirstName">First Name</label>
                   <input type="text" v-model="data.FirstName"
@@ -27,7 +27,7 @@
                   <label for="LastName ">Last Name</label>
                   <input type="text" v-model="data.LastName"
                     class="form-control" name="LastName" id="LastName" aria-describedby="HelpLastName" placeholder="LastName">
-                  <small id="HelpLastName" class="form-text text-muted">Help text</small>
+                  <small id="HelpLastName" class="form-text text-muted"></small>
                 </div>
                 <div class="form-group">
                   <label for="Password">Password</label>
@@ -44,18 +44,39 @@
             </form>
         </p>
       </div>
+
+      <div class="col-lg-6">
+        <div class="card border-success" v-if="newUser">
+          <div class="card-body">
+            <h4 class="card-title">You are now registered!</h4>
+            <p class="card-text">
+              {{newUser.FirstName}} {{newUser.LastName}}
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
 </template>
 
 <script>
-import {Register} from "@/models/users";
+import { Register } from '@/models/users';
+import { Globals } from '@/models/api';
+
 export default {
     data: ()=> ({
-        data: {}
+        data: {},
+        newUser: null
     }),
     methods: {
-        submit(){
-            Register(this.data)
+        async submit(){
+          try{
+            const m = await Register(this.data);
+            this.newUser = m;
+          }
+          catch(error){
+            Globals.errors.push(m);
+          }
         }
     }
 

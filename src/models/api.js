@@ -1,7 +1,11 @@
 const API_ROOT = process.env.API_ROOT || "http://localhost:3000/";
 
 export const Globals = {
-    user: null
+    user: null,
+    errors: [],
+    deleteError(i){
+        this.errors.splice(i,1);
+    }
 }
 
 export function login(){
@@ -14,11 +18,12 @@ export function login(){
 //    return fetch(API_ROOT + url).then(x => x.json);
 //}
 
-export function api(url, data){
+export async function api(url, data){
+    let response = null;
     if(!data){
-    return fetch(API_ROOT + url).then(x => x.json);
+        response = await fetch(API_ROOT + url);
     }else{
-        return fetch(url, {
+        response = await fetch(API_ROOT + url, {
             method: "POST",
             cache: "no-cache",
             headers: {
@@ -26,6 +31,9 @@ export function api(url, data){
             },
             body: JSON.stringify(data)
         })
-        .then(response => response.json());
     }
+    if(!response.ok){
+        throw await response.json();
+    }
+    return await response.json();
 }
