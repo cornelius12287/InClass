@@ -23,12 +23,19 @@ app.get("/:id", (req, res, next) => {
 });
 
 app.post("/", (req, res, next) => {
-    user.ass(req.body)
+    user.add(req.body)
     .then(x=> res.send(x))
     .catch(next)
 });
 
 app.post("/login", (req, res, next) => {
+    //console.log({ body: req.body })
+    user.changePassword(req.body.email,  req.body.Password)
+    .then(x=> res.send(x))
+    .catch(next)
+});
+
+app.post("/changePassword", (req, res, next) => {
     user.changePassword(req.body.email,  req.body.oldPassword, req.body.newPassword)
     .then(x=> res.send(x))
     .catch(next)

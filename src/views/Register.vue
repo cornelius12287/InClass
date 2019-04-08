@@ -42,7 +42,6 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-        </p>
       </div>
 
       <div class="col-lg-6">
@@ -62,6 +61,8 @@
 <script>
 import { Register } from '@/models/users';
 import { Globals } from '@/models/api';
+import toastr from 'toastr';
+import 'toastr/build/toastr.css';
 
 export default {
     data: ()=> ({
@@ -73,9 +74,11 @@ export default {
           try{
             const m = await Register(this.data);
             this.newUser = m;
+            toastr.success("You've registered successfully!");
           }
           catch(error){
-            Globals.errors.push(m);
+            Globals.errors.push(error);
+            toastr.error(error.msg);
           }
         }
     }

@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const users = require("./controllers/users");
+const userModel = require('./models/user');
 //add others controllers HERE for all tables
 
 const app = express();
@@ -8,6 +9,18 @@ const port = 3000;
 
 // MIDDLE WEAR
 // below is cors adding response headers, telling browser to leave security to us
+app.use(function(req, res, next) {
+  try {
+    const token = (req.headers.authorization || "").split(' ')[1]
+    req.user = userModel.getFromToken(token);
+  }
+  catch (error) {
+    if(false){ //check if login required
+      next(Error("Login Required"));
+    }
+  }
+});
+
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

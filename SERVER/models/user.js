@@ -4,6 +4,9 @@ const conn = require('./mysql_connection');
 const bcrypt = require('bcryptjs');
 const SALT_ROUNDS = 8;
 
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET || 'some long string here';
+
 // model JSON object
 // each method takes a cb callback function parameter for asynchronous programming
 const model = {
@@ -29,12 +32,17 @@ const model = {
         const hashedPassword = await bcrypt.hash(input.Password, SALT_ROUNDS)
         const data = await conn.query(
             "INSERT INTO Spring2019_Persons (FirstName,LastName,Birthday,Password,created_at) VALUES (?)",
-                    [[input.FirstName, input.LastName, input.Birthday, hashPassword, new Date()]]
+                    [[input.FirstName, input.LastName, input.Birthday, hashedPassword, new Date()]]
         );
         return await model.get(data.insertId);
     },
 
+    getFromToken(token){
+        return jwt.verify(token, JWT_SECRET);
+    },
+
     async login(email, password){
+        //console.log({ email, password })
         const data = await conn.query(`SELECT * FROM Spring2019_Persons P Join
             Spring2019_ContactMethods CM On CM.Person_Id = P.id
             WHERE CM.Value=?`, email);
@@ -43,7 +51,10 @@ const model = {
         }
         const x = await bcrypt.compare(password, data[0].Password);
         if(x){
-            return data[0];
+            //user contains everything from data
+            //plus password property equal to null which replaces the actual password so it is not visible
+            const user = {...data[0], password: null};
+            return {user, token: jwt.sign(user, JWT_SECRET)};
         }else{
             throw Error('Wrong Password');
         }
