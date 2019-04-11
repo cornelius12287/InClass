@@ -25,8 +25,8 @@
                 </li>
             </ul>
         <form class="form-inline mt-2 mt-md-0" v-if="!user">
-            <a href="#" class="nav-link" @click.prevent="login">LOGIN</a>
-            <a href="#" class="nav-link">SIGN UP</a>
+            <router-link to="/Login" class="nav-link">LOGIN</router-link>
+            <router-link to="/Register" class="nav-link">SIGN UP</router-link>
         </form>
         <span class="navbar-text" v-if="Globals.user">Welcome {{Globals.user.FirstName}}{{Globals.user.LastName}}</span>
         </div>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import {login, Globals} from "@/models/api";
+import {Globals} from "@/models/api";
 
 export default {
     // data takes a function that returns data
@@ -43,13 +43,10 @@ export default {
     }),
     // methods takes an object that contain functins
     methods: {
-        login(){
-            //calls Global login function instead
-            login()
+
         }
     }
 
-}
 </script>
 
 <style>
