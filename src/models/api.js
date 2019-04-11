@@ -20,13 +20,15 @@ export function login(){
 
 export async function api(url, data){
     let response = null;
+    let headers = { "Authorization": `Bearer ${Globals.token}`}
     if(!data){
-        response = await fetch(API_ROOT + url);
+        response = await fetch(API_ROOT + url, {headers});
     }else{
         response = await fetch(API_ROOT + url, {
             method: "POST",
             cache: "no-cache",
             headers: {
+                ...headers, 
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)

@@ -50,7 +50,6 @@
 import { Register } from '@/models/users';
 import { Globals } from '@/models/api';
 import toastr from 'toastr';
-import 'toastr/build/toastr.css';
 
 export default {
     data: ()=> ({
@@ -62,8 +61,6 @@ export default {
           try{
             const m = await Login(this.data);
             this.newUser = m.user;
-            Globals.user = m.user;
-            GLobals.token = m.token;
             toastr.success("You've logged in successfully!");
           }
           catch(error){
@@ -72,7 +69,6 @@ export default {
           }
         }
     }
-
 }
 </script>
 

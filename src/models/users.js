@@ -14,5 +14,7 @@ export async function Register(data){
 
 export async function Login(data){
     const x = await api("users/login", data)
+    Globals.user = x.user;
+    GLobals.token = x.token;
     return x
 }
