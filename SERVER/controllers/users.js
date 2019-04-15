@@ -30,7 +30,7 @@ app.post("/", (req, res, next) => {
 
 app.post("/login", (req, res, next) => {
     //console.log({ body: req.body })
-    user.changePassword(req.body.email,  req.body.Password)
+    user.login(req.body.email,  req.body.Password)
     .then(x=> res.send(x))
     .catch(next)
 });

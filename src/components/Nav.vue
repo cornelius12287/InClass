@@ -24,7 +24,7 @@
                     <a class="nav-link disabled" href="#">Disabled</a>
                 </li>
             </ul>
-        <form class="form-inline mt-2 mt-md-0" v-if="!user">
+        <form class="form-inline mt-2 mt-md-0" v-if="!Globals.user">
             <router-link to="/Login" class="nav-link">LOGIN</router-link>
             <router-link to="/Register" class="nav-link">SIGN UP</router-link>
         </form>
