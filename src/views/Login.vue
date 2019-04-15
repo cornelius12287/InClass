@@ -66,7 +66,7 @@ export default {
           }
           catch(error){
             Globals.errors.push(error);
-            toastr.error(error.msg);
+            toastr.error(error.message);
           }
         }
     }

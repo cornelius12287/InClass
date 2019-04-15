@@ -71,7 +71,7 @@ const model = {
             const hashedPassword = await bcrypt.hash(newPassword, SALT_ROUNDS);
             await conn.query(`Update Spring2019_Persons P Set ? WHERE P.id=?`,
                 [ {Password: hashedPassword }, data[0].id]);
-            return { status: "success", msg: "Password Successfully Changed" };
+            return { status: "success", message: "Password Successfully Changed" };
         }else{
             throw Error('Wrong Password');
         }
