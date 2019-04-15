@@ -9,6 +9,13 @@ const port = 3000;
 
 // MIDDLE WEAR
 // below is cors adding response headers, telling browser to leave security to us
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept", "Authorization");
+  next();
+});
+
 app.use(function(req, res, next) {
   try {
     const token = (req.headers.authorization || "").split(' ')[1]
@@ -22,12 +29,6 @@ app.use(function(req, res, next) {
   }
   next();
 });
-
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept", "Authorization");
-    next();
-  });
 
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());

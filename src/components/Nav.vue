@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import {Globals} from "@/models/api";
+import { Globals } from "@/models/api";
 
 export default {
     // data takes a function that returns data
