@@ -8,9 +8,6 @@
           <li class="nav-item">
             <a class="nav-link" href="/Login">Login with Existing User</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Sign-in with Facebook</a>
-          </li>
         </ul>
       </div>
       <div class="card-body">

@@ -8,13 +8,10 @@
           <li class="nav-item">
             <a class="nav-link active" href="/Login">Login with Existing User</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Sign-in with Facebook</a>
-          </li>
         </ul>
       </div>
       <div class="card-body">
-        <h4 class="card-title">Register</h4>
+        <h4 class="card-title">Login</h4>
         <p class="card-text">
             <form @submit.prevent="submit">
                 <div class="form-group">
@@ -28,8 +25,9 @@
                   <input type="password" v-model="data.password"
                     class="form-control" name="Password" id="Password" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-success">Login</button>
             </form>
+            <br /><button class="btn btn-primary btn-block" @click.prevent="facebookLogin">Log In with Facebook</button>
       </div>
 
       <div class="col-lg-6">
@@ -49,6 +47,7 @@
 <script>
 import { Register } from '@/models/users';
 import { Globals } from '@/models/api';
+import * as fb from '@/models/facebook';
 import toastr from 'toastr';
 
 export default {
@@ -56,6 +55,7 @@ export default {
         data: {},
         newUser: null
     }),
+
     methods: {
         async submit(){
           try{
@@ -68,6 +68,12 @@ export default {
             Globals.errors.push(error);
             toastr.error(error.message);
           }
+        },
+
+        async facebookLogin(){
+          const m = await fb.Login();
+          console.log( {m} );
+          Globals.user = { FirstName: m.name, Email: m.email};
         }
     }
 }
