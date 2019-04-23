@@ -29,8 +29,13 @@ app.post("/", (req, res, next) => {
 });
 
 app.post("/login", (req, res, next) => {
-    //console.log({ body: req.body })
     user.login(req.body.email,  req.body.Password)
+    .then(x=> res.send(x))
+    .catch(next)
+});
+
+app.post("/facebookLogin", (req, res, next) => {
+    user.facebookLogin(req.body.token,  req.body.fbid)
     .then(x=> res.send(x))
     .catch(next)
 });

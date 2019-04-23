@@ -1,4 +1,4 @@
-import { api } from "./api";
+import { api, Globals } from "./api";
 
 export async function GetFriends(){
     const x = await api("users")
@@ -15,6 +15,14 @@ export async function Register(data){
 export async function Login(data){
     const x = await api("users/login", data)
     Globals.user = x.user;
-    GLobals.token = x.token;
+    Globals.token = x.token;
+    return x
+}
+
+export async function oAuthLogin(token, fbid){
+    const x = await api("users/facebookLogin", { token, fbid })
+    Globals.user = x.user;
+    Globals.token = x.token;
+    Globals.oAuthId = fbid;
     return x
 }
