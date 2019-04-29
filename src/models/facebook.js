@@ -1,4 +1,5 @@
 import { oAuthLogin } from "./users";
+/*Globals.fb;*/
 
 //window is a global space
   window.fbAsyncInit = function() {

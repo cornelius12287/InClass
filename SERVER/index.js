@@ -28,7 +28,7 @@ app.use(function(req, res, next) {
   catch (error) {
     const openActions = ['POST/users', 'POST/users/login', 'POST/users/facebooklogin', 'GET/myfriends', 'GET/register', 'GET/login', 'GET/about']
     if(req.method != 'OPTIONS' && !openActions.includes(req.method, + req.path.toLowerCase)){
-      next(Error("Login Required"));
+      //next(Error("Login Required"));
     }
   }
   next();
